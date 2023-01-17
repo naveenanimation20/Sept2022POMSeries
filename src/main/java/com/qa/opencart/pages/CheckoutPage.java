@@ -5,7 +5,8 @@ public class CheckoutPage {
 	public void checkout() {
 		System.out.println("checkout---Naveen");
 		int i = 10;
+		String name = "macbook";
+		
 	}
 
 }
-
