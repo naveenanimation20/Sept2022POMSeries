@@ -9,4 +9,10 @@ public class CheckoutPage {
 		
 	}
 
+	
+	public void test() {
+		System.out.println("test method");
+	}
+	
+	
 }
