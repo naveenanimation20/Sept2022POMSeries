@@ -8,6 +8,11 @@ public class CheckoutPage {
 		String name = "macbook";
 		
 	}
+	
+	
+	public void run() {
+		System.out.println("run method");
+	}
 
 	
 	public void test() {
