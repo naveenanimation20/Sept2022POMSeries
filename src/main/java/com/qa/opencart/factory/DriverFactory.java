@@ -28,6 +28,7 @@ public class DriverFactory {
 	public WebDriver initDriver(Properties prop) {
 
 		String browserName = prop.getProperty("browser").trim();
+		//String browserName = System.getProperty("browser");//CMD line argument
 		System.out.println("Browser name is : " + browserName);
 
 		highlight = prop.getProperty("highlight");
@@ -35,17 +36,16 @@ public class DriverFactory {
 		optionsManager = new OptionsManager(prop);
 
 		if (browserName.equalsIgnoreCase("chrome")) {
-			//driver = new ChromeDriver(optionsManager.getChromeOptions());
+			// driver = new ChromeDriver(optionsManager.getChromeOptions());
 			tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
-		} 
-		else if (browserName.equalsIgnoreCase("firefox")) {
-			//driver = new FirefoxDriver(optionsManager.getFirefoxOptions());
+		} else if (browserName.equalsIgnoreCase("firefox")) {
+			// driver = new FirefoxDriver(optionsManager.getFirefoxOptions());
 			tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
 		} else if (browserName.equalsIgnoreCase("safari")) {
-			//driver = new SafariDriver();
+			// driver = new SafariDriver();
 			tlDriver.set(new SafariDriver());
 		} else if (browserName.equalsIgnoreCase("edge")) {
-			//driver = new EdgeDriver();
+			// driver = new EdgeDriver();
 			tlDriver.set(new EdgeDriver());
 		} else {
 			System.out.println("Please pass the right browser name...." + browserName);
@@ -58,27 +58,68 @@ public class DriverFactory {
 		return getDriver();
 
 	}
-	
-	//get the local thread copy of the driver
+
+	// get the local thread copy of the driver
 	public synchronized static WebDriver getDriver() {
 		return tlDriver.get();
 	}
-		
 
 	public Properties initProp() {
 		prop = new Properties();
+		FileInputStream ip = null;
+
+		// mvn clean install -Denv="qa"
+		// mvn clean install
+
+		String envName = System.getProperty("env");
+		System.out.println("-----> Running test cases on environment----> " + envName);
+
+		if (envName == null) {
+			System.out.println("No env is given...hence running it on default QA env....");
+			try {
+				ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+
+			try {
+				switch (envName.toLowerCase()) {
+				case "qa":
+					ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+					break;
+				case "dev":
+					ip = new FileInputStream("./src/test/resources/config/dev.config.properties");
+					break;
+				case "stage":
+					ip = new FileInputStream("./src/test/resources/config/stage.config.properties");
+					break;
+				case "uat":
+					ip = new FileInputStream("./src/test/resources/config/uat.config.properties");
+					break;
+				case "prod":
+					ip = new FileInputStream("./src/test/resources/config/config.properties");
+					break;
+
+				default:
+					System.out.println("Please pass the right env name...." + envName);
+					break;
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+
+		}
+		
 		try {
-			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
 			prop.load(ip);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		return prop;
 	}
-	
-	
+
 	/**
 	 * take screenshot
 	 */
@@ -88,7 +129,7 @@ public class DriverFactory {
 		File destination = new File(path);
 		try {
 			FileHandler.copy(srcFile, destination);
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
