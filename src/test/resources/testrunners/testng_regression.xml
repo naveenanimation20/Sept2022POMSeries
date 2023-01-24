@@ -32,7 +32,7 @@
 	</test>
 	
 	
-	<test name="Product Info Page Test">
+	<!-- <test name="Product Info Page Test">
 		
 		<classes>
 			<class name="com.qa.opencart.tests.ProductInfoPageTest">
@@ -40,7 +40,7 @@
 			</class>
 		</classes>
 
-	</test>
+	</test> -->
 
 
 

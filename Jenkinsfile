@@ -24,8 +24,7 @@ pipeline
                 }
             }
         }
-        
-        
+                   
         
         stage("Deploy to QA"){
             steps{
