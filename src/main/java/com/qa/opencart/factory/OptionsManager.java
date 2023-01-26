@@ -23,6 +23,7 @@ public class OptionsManager {
 		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
 			co.setCapability("enableVNC", true);
 			co.setPlatformName("linux");
+			co.setBrowserVersion(prop.getProperty("browserversion"));
 		}
 		
 		
@@ -43,6 +44,7 @@ public class OptionsManager {
 		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
 			fo.setCapability("enableVNC", true);
 			fo.setPlatformName("linux");
+			fo.setBrowserVersion(prop.getProperty("browserversion"));
 		}
 		
 		if (Boolean.parseBoolean(prop.getProperty("headless"))) {

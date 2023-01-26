@@ -11,8 +11,10 @@
 			class-name="com.qa.opencart.listeners.TestAllureListener" />
 	</listeners>
 
-	<test name="Login Page Test">
+	<test name="Login Page Test _ chrome _ 109">
 		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="109.0" />
+
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest">
 
@@ -21,8 +23,24 @@
 
 	</test>
 
-	<test name="Accounts Page Test">
-		<parameter name="browser" value="firefox" />
+
+	<test name="Login Page Test _ chrome _ 90">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+
+		<classes>
+			<class name="com.qa.opencart.tests.LoginPageTest">
+
+			</class>
+		</classes>
+
+	</test>
+
+
+	<test name="Accounts Page Test_chrome_79">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="79.0" />
+
 
 		<classes>
 			<class name="com.qa.opencart.tests.AccountsPageTest">
@@ -33,15 +51,37 @@
 	</test>
 
 
-	<test name="Product Info Page Test">
-		<parameter name="browser" value="edge" />
+	<test name="Accounts Page Test_chrome_90">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+
 
 		<classes>
-			<class name="com.qa.opencart.tests.ProductInfoPageTest">
+			<class name="com.qa.opencart.tests.AccountsPageTest">
 
 			</class>
 		</classes>
 
+	</test>
+
+
+	<test name="Product Info Page Test_ chrome _90">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+		<classes>
+			<class name="com.qa.opencart.tests.ProductInfoPageTest">
+			</class>
+		</classes>
+	</test>
+	
+	
+	<test name="Product Info Page Test_ chrome _108">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="108.0" />
+		<classes>
+			<class name="com.qa.opencart.tests.ProductInfoPageTest">
+			</class>
+		</classes>
 	</test>
 
 
