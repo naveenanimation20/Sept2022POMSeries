@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -23,6 +24,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.qa.opencart.factory.DriverFactory;
 
 public class ElementUtil {
+	
+	public static final Logger log = Logger.getLogger(ElementUtil.class);
+
 
 	private WebDriver driver;
 	private JavaScriptUtil jsUtil;
@@ -47,6 +51,10 @@ public class ElementUtil {
 	}
 
 	public void doClick(By locator) {
+		getElement(locator).click();
+	}
+	
+	public void doClickElement(By locator) {
 		getElement(locator).click();
 	}
 

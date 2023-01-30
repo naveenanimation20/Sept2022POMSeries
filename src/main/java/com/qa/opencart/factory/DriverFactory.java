@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -27,24 +28,30 @@ public class DriverFactory {
 	public static String highlight;
 
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
+	
+	public static final Logger log = Logger.getLogger(DriverFactory.class);
+
 
 	public WebDriver initDriver(Properties prop) {
 
 		String browserName = prop.getProperty("browser").trim();
 		// String browserName = System.getProperty("browser");//CMD line argument
 		System.out.println("Browser name is : " + browserName);
+		log.info("Browser name is : " + browserName);
 
 		highlight = prop.getProperty("highlight");
 
 		optionsManager = new OptionsManager(prop);
 
 		if (browserName.equalsIgnoreCase("chrome")) {
-
+			log.info("running tests on chrome browser....");
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+				log.info("running tests on remote machine....");
 				// remote execution on docker/grid/cloud
 				init_remoteDriver("chrome");
 			} else {
 				// local execution
+				log.info("running tests locally....");
 				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 			}
 
@@ -77,7 +84,10 @@ public class DriverFactory {
 		}
 
 		else {
+			log.error("please pass the right browser...."+ browserName);
 			System.out.println("Please pass the right browser name...." + browserName);
+			
+			//info, warn, error, fatal
 		}
 
 		getDriver().manage().deleteAllCookies();

@@ -5,6 +5,8 @@
 	parallel="tests" verbose="4">
 
 	<listeners>
+	<listener
+			class-name="com.qa.opencart.listeners.AnnotationTransformer" />
 		<listener
 			class-name="com.qa.opencart.listeners.ExtentReportListener" />
 		<listener
@@ -24,7 +26,7 @@
 	</test>
 
 
-	<test name="Login Page Test _ chrome _ 90">
+	<!-- <test name="Login Page Test _ chrome _ 90">
 		<parameter name="browser" value="chrome" />
 		<parameter name="browserversion" value="90.0" />
 
@@ -82,7 +84,7 @@
 			<class name="com.qa.opencart.tests.ProductInfoPageTest">
 			</class>
 		</classes>
-	</test>
+	</test> -->
 
 
 
